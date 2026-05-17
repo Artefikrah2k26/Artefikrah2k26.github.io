@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><link rel="shortcut icon" href="file:///C:/Users/DNIC/Downloads/LOGO_FEST_PRINT__CMYK_-removebg-preview.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ARTE FIKRAH 2K26| Art Fest</title>
+    <link rel="stylesheet" href="file:///C:/Users/DNIC/Downloads/LOGO_FEST_PRINT__CMYK_-removebg-preview.png">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #161622;
+            --bg-glass: rgba(22, 22, 40, 0.65);
+            --text-primary: #e8e8f0;
+            --text-secondary: #b0b0c8;
+            --text-muted: #7a7a9a;
+            --accent-1: #ff6b6b;
+            --accent-2: #ffa94d;
+            --accent-3: #ffd43b;
+            --accent-cool: #748ffc;
+            --accent-teal: #20c997;
+            --accent-pink: #f06595;
+            --gradient-1: linear-gradient(135deg, #ff6b6b, #ffa94d);
+            --gradient-2: linear-gradient(135deg, #748ffc, #20c997);
+            --gradient-3: linear-gradient(135deg, #f06595, #ff6b6b);
+            --gradient-hero: linear-gradient(135deg, #ff6b6b 0%, #ffa94d 30%, #f06595 60%, #748ffc 100%);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 0 60px rgba(255, 107, 107, 0.15), 0 0 120px rgba(116, 143, 252, 0.08);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 10px;
+            --transition-smooth: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --font-display: 'SF Pro Display', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --font-body: 'SF Pro Text', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-2);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-1);
+        }
+
+        /* ===== CANVAS PARTICLES BACKGROUND ===== */
+        #particlesCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        /* ===== ORB GLOW EFFECTS ===== */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.25;
+            pointer-events: none;
+            z-index: 0;
+            animation: orbFloat 12s ease-in-out infinite;
+        }
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-1);
+            top: -15%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-cool);
+            bottom: -12%;
+            right: -8%;
+            animation-delay: -4s;
+            animation-duration: 14s;
+        }
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: var(--accent-pink);
+            top: 50%;
+            left: 55%;
+            animation-delay: -8s;
+            animation-duration: 16s;
+        }
+
+        @keyframes orbFloat {
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(60px, -40px) scale(1.15);
+            }
+            50% {
+                transform: translate(-30px, 50px) scale(0.9);
+            }
+            75% {
+                transform: translate(-50px, -30px) scale(1.1);
+            }
+        }
+
+        /* ===== MAIN WRAPPER ===== */
+        .app-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem 3rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            padding: 1.2rem 2rem;
+            background: var(--bg-glass);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-card);
+            position: sticky;
+            top: 1rem;
+            z-index: 100;
+            transition: all var(--transition-smooth);
+        }
+        .header.scrolled {
+            background: rgba(18, 18, 26, 0.9);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(255, 107, 107, 0.35);
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+        @keyframes logoPulse {
+            0%,
+            100% {
+                box-shadow: 0 8px 24px rgba(255, 107, 107, 0.35);
+            }
+            50% {
+                box-shadow: 0 8px 40px rgba(255, 107, 107, 0.65), 0 0 60px rgba(255, 169, 77, 0.3);
+            }
+        }
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+        .nav-links li a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            transition: all var(--transition-bounce);
+            position: relative;
+            white-space: nowrap;
+            border: 1px solid transparent;
+        }
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--border-glass);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        .nav-links li a.active {
+            background: var(--gradient-1);
+            border-color: transparent;
+            color: #fff;
+            font-weight: 700;
+            box-shadow: 0 8px 28px rgba(255, 107, 107, 0.4);
+        }
+        .nav-links li a i {
+            font-size: 0.9rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: 1px solid var(--border-glass);
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 0.8rem;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-smooth);
+        }
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        main {
+            flex: 1;
+        }
+        .page-section {
+            display: none;
+            animation: pageReveal 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+        .page-section.active {
+            display: block;
+        }
+        @keyframes pageReveal {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+                filter: blur(4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            line-height: 1.2;
+        }
+        .section-title .title-accent {
+            display: inline-block;
+            width: 8px;
+            height: 48px;
+            border-radius: 20px;
+            background: var(--gradient-1);
+            flex-shrink: 0;
+        }
+        .section-title i {
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            font-size: 2.4rem;
+        }
+
+        /* ===== CARDS GRID ===== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+        }
+        .modern-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all var(--transition-bounce);
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+        .modern-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 3px 3px 0 0;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+        }
+        .modern-card:hover::before {
+            opacity: 1;
+        }
+        .modern-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-glow), 0 20px 50px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+        .modern-card .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            transition: transform var(--transition-bounce);
+        }
+        .modern-card:hover .card-icon {
+            transform: scale(1.2) rotate(-5deg);
+        }
+        .modern-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        .modern-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        .badge-pill {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-glass);
+            transition: all var(--transition-smooth);
+        }
+        .modern-card:hover .badge-pill {
+            background: var(--gradient-1);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        /* ===== TABLE MODERN ===== */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-glass);
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-card);
+        }
+        .modern-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+        .modern-table thead th {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            border-bottom: 2px solid var(--border-glass);
+            font-family: var(--font-display);
+        }
+        .modern-table tbody td {
+            padding: 1.1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: background var(--transition-smooth);
+        }
+        .modern-table tbody tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .modern-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .rank-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+        .rank-gold {
+            background: var(--gradient-1);
+            color: #fff;
+        }
+        .rank-silver {
+            background: linear-gradient(135deg, #adb5bd, #6c757d);
+            color: #fff;
+        }
+        .rank-bronze {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            color: #fff;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            max-width: 850px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-card);
+            line-height: 1.9;
+            font-size: 1.1rem;
+        }
+        .about-card .highlight {
+            color: var(--accent-2);
+            font-weight: 700;
+        }
+        .social-row {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.8rem;
+            font-size: 1.6rem;
+        }
+        .social-row a {
+            color: var(--text-muted);
+            transition: all var(--transition-bounce);
+            text-decoration: none;
+        }
+        .social-row a:hover {
+            color: var(--accent-1);
+            transform: translateY(-4px) scale(1.15);
+        }
+
+        /* ===== HERO HOME ===== */
+        .hero-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+        }
+        .hero-text {
+            flex: 1;
+            min-width: 280px;
+        }
+        .hero-text .hero-greeting {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-2);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .hero-text h2 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero-text p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+        .hero-visual {
+            flex: 1;
+            min-width: 260px;
+            text-align: center;
+            font-size: 7rem;
+            animation: heroFloat 5s ease-in-out infinite;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .hero-visual i {
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            transition: transform var(--transition-bounce);
+            cursor: default;
+        }
+        .hero-visual i:hover {
+            transform: scale(1.2) rotate(8deg);
+        }
+        @keyframes heroFloat {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        .btn-modern {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            background: var(--gradient-1);
+            color: #fff;
+            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.4);
+            transition: all var(--transition-bounce);
+        }
+        .btn-modern:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(255, 107, 107, 0.55);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--border-glass);
+            box-shadow: none;
+            color: #fff;
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* ===== STATS ROW ===== */
+        .stats-row {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+        }
+        .stat-item {
+            text-align: center;
+            min-width: 80px;
+        }
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 3rem;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+        .footer .divider-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-2);
+            margin: 0 0.8rem;
+            vertical-align: middle;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .app-container {
+                padding: 0.8rem 1rem 2rem;
+            }
+            .header {
+                padding: 1rem 1.2rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+                top: 0.5rem;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                gap: 0.3rem;
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .nav-links li a {
+                justify-content: center;
+                padding: 0.7rem;
+                border-radius: var(--radius-sm);
+            }
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 1.2rem;
+                top: 1.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .hero-text h2 {
+                font-size: 2.4rem;
+            }
+            .hero-visual {
+                font-size: 4rem;
+            }
+            .modern-card {
+                padding: 1.5rem 1rem;
+            }
+            .about-card {
+                padding: 1.5rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-text h2 {
+                font-size: 1.9rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .btn-group {
+                flex-direction: column;
+            }
+            .btn-modern {
+                justify-content: center;
+            }
+        }
+        /* From Uiverse.io by adamgiebl */ 
+button {
+  position: relative;
+  display: inline-block;
+  margin: 15px;
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: #725AC1;
+  background: transparent;
+  cursor: pointer;
+  transition: ease-out 0.5s;
+  border: 2px solid #725AC1;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 0 #725AC1;
+}
+
+button:hover {
+  color: white;
+  box-shadow: inset 0 -100px 0 0 #725AC1;
+}
+
+button:active {
+  transform: scale(0.9);
+}
+.logo-home{
+    background-color: rgb(0, 0, 0);
+     border-radius: 30px ;
+     height:0px;
+     width:0px;
+     margin-left: 800px;
+         
+}
+ /* page sections */
+        .page-section { display: none; animation: pageReveal 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; }
+        .page-section.active { display: block; }
+        @keyframes pageReveal {
+            from { opacity: 0; transform: translateY(30px); filter: blur(4px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+        .section-title {
+            font-family: var(--font-display); font-size: 2.8rem; font-weight: 800;
+            margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;
+        }
+        .section-title .title-accent { width: 8px; height: 48px; border-radius: 20px; background: var(--gradient-1); }
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.8rem; }
+        .modern-card {
+            background: var(--bg-glass); backdrop-filter: blur(20px); border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg); padding: 2rem 1.5rem; text-align: center;
+            transition: all var(--transition-bounce); box-shadow: var(--shadow-card);
+        }
+        .modern-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-glow); border-color: rgba(255,255,255,0.18); }
+        .badge-pill { display: inline-block; padding: 0.4rem 1.2rem; border-radius: 50px; background: rgba(255,255,255,0.06); color: var(--text-secondary); border: 1px solid var(--border-glass); }
+        .table-wrapper { overflow-x: auto; border-radius: var(--radius-lg); border: 1px solid var(--border-glass); background: var(--bg-glass); backdrop-filter: blur(20px); }
+        .modern-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        .modern-table thead th { background: rgba(255,255,255,0.04); padding: 1rem 1.2rem; text-align: left; font-weight: 700; color: var(--text-secondary); border-bottom: 2px solid var(--border-glass); }
+        .modern-table tbody td { padding: 1rem 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .btn-modern {
+            display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.9rem 2.2rem;
+            border-radius: 50px; font-weight: 700; background: var(--gradient-1); color: #fff;
+            text-decoration: none; box-shadow: 0 8px 30px rgba(255,107,107,0.4); transition: all var(--transition-bounce);
+            border: none; cursor: pointer;
+        }
+        .btn-outline { background: transparent; border: 2px solid var(--border-glass); box-shadow: none; }
+        .footer { margin-top: 3rem; padding: 1.5rem; text-align: center; background: var(--bg-glass); border-radius: var(--radius-lg); color: var(--text-muted); }
+
+        /* ---- AUTH LOCK MODAL / OVERRIDE (RESULTS LOCK) ---- */
+        .results-lock-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.2s, opacity 0.3s ease;
+        }
+        .results-lock-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .auth-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            text-align: center;
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .results-lock-overlay.active .auth-card {
+            transform: scale(1);
+        }
+        .auth-card i.lock-icon {
+            font-size: 3.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+        .auth-card h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        .auth-card p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        .input-group {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+        .input-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-sm);
+            color: white;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent-2);
+            box-shadow: 0 0 0 2px rgba(255,169,77,0.3);
+        }
+        .auth-error {
+            background: rgba(255,107,107,0.2);
+            border-left: 4px solid var(--accent-1);
+            padding: 0.7rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #ffb4b4;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        .auth-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 0.5rem;
+        }
+        .btn-auth {
+            flex: 1;
+            background: var(--gradient-1);
+            border: none;
+            padding: 0.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn-auth-secondary {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--border-glass);
+        }
+        .btn-auth:hover { transform: translateY(-2px); filter: brightness(1.05); }
+        /* results container inside page-results */
+        .results-protected-content {
+            transition: filter 0.2s;
+        }
+        .results-locked-blur {
+            filter: blur(5px);
+            pointer-events: none;
+            user-select: none;
+        }
+        .unlock-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(32, 201, 151, 0.2);
+            border: 1px solid var(--accent-teal);
+            border-radius: 60px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.85rem;
+            color: var(--accent-teal);
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(4px);
+        }
+        .unlock-badge i { font-size: 1rem; }
+        .lock-warning-badge {
+            background: rgba(255,107,107,0.2);
+            border-color: var(--accent-1);
+            color: var(--accent-1);
+        }
+        .btn-small-unlock {
+            background: var(--gradient-1);
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-left: 0.8rem;
+        }
+        .a-plus-badge { background: var(--gradient-2); padding: 0.2rem 0.7rem; border-radius: 30px; font-weight: bold; font-size: 0.8rem; color: #0a0a0f; display: inline-block; }
+        .rank-badge, .rank-gold, .rank-silver, .rank-bronze { display: inline-block; font-weight: bold; }
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Floating Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particlesCanvas"></canvas>
+
+    <!-- App Container -->
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header" id="mainHeader">
+            <div class="logo-group">
+                <div class="logo-icon"><i class="fas fa-feather-alt"></i></div>
+                <span class="logo-text">Arte Fikrah</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#" data-page="home" class="active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" data-page="teams"><i class="fas fa-users"></i> Teams</a></li>
+                    <li><a href="#" data-page="results"><i class="fas fa-trophy"></i> Results</a></li>
+                    <li><a href="#" data-page="candidates"><i class="fas fa-user-graduate"></i> Candidates</a></li>
+                    <li><a href="#" data-page="about"><i class="fas fa-info-circle"></i> About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- HOME -->
+            <section class="page-section active" id="page-home">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <div class="logo-home"><img src="LOGO_FEST_PRINT__CMYK_-removebg-preview.png" ></div>
+                        <p class="hero-greeting">✦ Welcome to the future of cultural art</p>                       
+                        <h2>Arte<br>Fikrah</h2>                       
+                        <p>A cutting-edge celebration where heritage meets bold contemporary expression. Immerse yourself in a world of visionary artists, electrifying performances, and cultural innovation.</p>
+                        <p></p>                       
+                        <div class="btn-group">
+                            <a href="#" class="btn-modern" data-nav="teams"><i class="fas fa-users"></i> Explore Teams</a>
+                            <a href="#" class="btn-modern btn-outline" data-nav="results"><i class="fas fa-trophy"></i> View Results</a>
+                        </div>                      
+                        <div class="stats-row">
+                            <div class="stat-item"><div class="stat-number">3</div><div class="stat-label">Teams</div></div>
+                            <div class="stat-item"><div class="stat-number">31</div><div class="stat-label">Artists</div></div>
+                            <div class="stat-item"><div class="stat-number">15</div><div class="stat-label">Days</div></div>
+                            <div class="stat-item"><div class="stat-number">∞</div><div class="stat-label">Creativity</div></div>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <i class="fas fa-palette"></i>
+                        <i class="fas fa-guitar"></i>
+                        <i class="fas fa-paint-brush"></i>
+                        <i class="fas fa-masks-theater"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TEAMS -->
+            <section class="page-section" id="page-teams">
+                <div class="section-title">
+                    <span class="title-accent"></span>
+                    <i class="fas fa-users"></i> Artistic Teams
+                </div>
+                <div class="cards-grid">
+                    <div class="modern-card">
+                        <div class="card-icon"><i  class="fas fa-users"></i></div>
+                        <h3>Chrona</h3>
+                        <p>Through every second, every challenge, and every dream, we rise beyond limits and create a future filled with passion, creativity, and victory.</p>
+                        <button><a href="chrona.html" style="text-decoration: none; color: white; ">About us</a></button>
+                        <span class="badge-pill">11 Members</span>
+                    </div>
+                    <div class="modern-card">
+                        <div class="card-icon"><i class="fas fa-users"></i></div>
+                        <h3>Memora</h3>
+                        <p>We turn moments into memories, ideas into art, and teamwork into a story that will be remembered forever.</p>
+                       <button><a href="memora.html" style="text-decoration: none; color: white;">About us</a></button>
+                        <span class="badge-pill">10 Members</span>
+                    </div>
+                    <div class="modern-card">
+                        <div class="card-icon"><i class="fas fa-users"></i></div>
+                        <h3>Herita</h3>
+                        <p>With pride in our heritage and courage in our hearts, we celebrate culture, creativity, and the spirit that unites us all.</p>
+                       <button><a href="herita.html" style="text-decoration: none; color: white;">About us</a></button>
+                        <span class="badge-pill">10 Members</span>
+                    </div>
+            
+            </section>
+
+            <!-- CANDIDATES -->
+            <section class="page-section" id="page-candidates">
+                <div class="section-title">
+                    <span class="title-accent"></span>
+                    <i class="fas fa-user-graduate"></i> Featured Candidates
+                </div>
+                <div class="cards-grid">
+                    <div class="modern-card">
+                        <div class="card-icon"><i class="fas fa-female"></i></div>
+                        <h3>Naseem.m</h3>
+                        <p>Abstract painter merging Berber motifs with digital surrealism.</p>
+                        <span class="badge-pill"><i class="fas fa-star"></i>Artist</span>
+                    </div>
+                    <div class="modern-card">
+                        <div class="card-icon"><i class="fas fa-male"></i></div>
+                        <h3>Jalal.kp</h3>
+                        <p>Oud virtuoso blending Gnawa rhythms with ambient electronica.</p>
+                        <span class="badge-pill"><i class="fas fa-music"></i>Singer</span>
+                    </div>
+                    <div class="modern-card">
+                        <div class="card-icon"><i class="fas fa-female"></i></div>
+                        <h3>Bishrul Hafi.pm</h3>
+                        <p>Master on academic programmes like a starlight</p>
+                        <span class="badge-pill"><i class="fas fa-pen"></i>Academic</span>
+                    </div>
+                    <div class="modern-card">
+                        <div class="card-icon"><i class="fas fa-male"></i></div>
+                        <h3>Sibhathulla</h3>
+                        <p> Digital points are absorbing from the programmes to his team</p>
+                        <span class="badge-pill"><i class="fas fa-mask"></i>Technology</span>
+                    </div>
+                    <div class="modern-card">
+                        <div class="card-icon"><i class="fas fa-female"></i></div>
+                        <h3>Razal.p</h3>
+                        <p>A Unique and rare in the fire of sports</p>
+                        <span class="badge-pill"><i class="fas fa-camera"></i>Sports</span>
+                    </div>
+                    <div class="modern-card">
+                        <div class="card-icon"><i class="fas fa-male"></i></div>
+                        <h3>Hanan.kv</h3>
+                        <p>all four language conqueror on all types of energy</p>
+                        <span class="badge-pill"><i class="fas fa-cube"></i> Sculpture</span>
+                    </div>
+                </div>
+            </section>
+             <!-- RESULTS with LOCK PROTECTION -->
+            <section class="page-section" id="page-results">
+                <div class="section-title"><span class="title-accent"></span><i class="fas fa-trophy"></i> Competition Results</div>
+                <!-- dynamic lock status UI inside results -->
+                <div id="resultsLockStatus" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                    <div id="accessBadgeContainer"></div>
+                </div>
+                <div id="resultsContentWrapper" class="results-protected-content">
+                    <div class="table-wrapper" id="resultsTableWrapper">
+                        <!-- full results table content is inside, but can be blurred if locked -->
+                        <table class="modern-table">
+                            <thead><tr><th>Programme</th><th>🥇 1st Place</th><th>🥈 2nd Place</th><th>🥉 3rd Place</th><th>A+</th></tr></thead>
+                            <tbody>
+                                <tr><td><i class="fas fa-paint-brush"></i> Cartoon</td><td>Shammas</td><td>Naseem</td><td>_________</td><td><span class="a-plus-badge">Yasmine Benali</span></td></tr>
+                                <tr><td><i class="fas fa-watercolor"></i> Essay MLM</td><td>_________</td><td>_________</td><td>_________</td><td><span class="a-plus-badge">Samir Kader</span></td></tr>
+                                <tr><td><i class="fas fa-vector-square"></i> Essay ENG</td><td>_________</td><td>_________</td><td>_________</td><td><span class="a-plus-badge">Houda Mansouri</span></td></tr>
+                                <tr><td><i class="fas fa-camera"></i> Essay ARB</td><td>_________</td><td>Leila Amrani</td><td>Youssef Naji</td><td><span class="a-plus-badge">Nour El Houda</span></td></tr>
+                                <tr><td><i class="fas fa-cube"></i> Essay URD</td><td>Rayan Choukri</td><td>Fatima Zahra</td><td>Ali Benjelloun</td><td><span class="a-plus-badge">Mehdi Ouazzani</span></td></tr>
+                                <tr><td><i class="fas fa-guitar"></i> Poem MLM</td><td>Oud Alwan</td><td>Sawt Tarab</td><td>Diwan Calligraphy</td><td><span class="a-plus-badge">Noor Lens</span></td></tr>
+                                <tr><td><i class="fas fa-microphone-alt"></i> Poem ENG</td><td>Hind El Idrissi</td><td>Rachid Alami</td><td>Soukaina Berrada</td><td><span class="a-plus-badge">Anas Filali</span></td></tr>
+                                <tr><td><i class="fas fa-drum"></i> Poem ARB</td><td>Tariq Belkacem</td><td>Ines Bouzid</td><td>Walid Cherkaoui</td><td><span class="a-plus-badge">Salma Drissi</span></td></tr>
+                                <tr><td><i class="fas fa-theater-masks"></i> Poem URD</td><td>Hikaya Stage</td><td>Masrah El Fann</td><td>Rihab Troupe</td><td><span class="a-plus-badge">Karim Bennis</span></td></tr>
+                                <tr><td><i class="fas fa-film"></i> Short Story MLM</td><td>Nadia Lamrani</td><td>Yassin Tahiri</td><td>Meriem Othman</td><td><span class="a-plus-badge">Adil El Khatib</span></td></tr>
+                                <tr><td><i class="fas fa-feather-alt"></i> Short Story ENG</td><td>Jalal Eddine</td><td>Nisrine Bakkali</td><td>Hamza Berrada</td><td><span class="a-plus-badge">Kenza Mouline</span></td></tr>
+                                <tr><td><i class="fas fa-music"></i> Dance</td><td>Short Story ARB</td><td>Banat Al Andalous</td><td>Firqat Al Nour</td><td><span class="a-plus-badge">Mounir El Idrissi</span></td></tr>
+                                <tr><td><i class="fas fa-hands"></i> Short Story URD</td><td>Zouhair Sebti</td><td>Fatine Ouahbi</td><td>Abdelilah Benani</td><td><span class="a-plus-badge">Rim Chaoui</span></td></tr>
+                                <tr><td><i class="fas fa-tshirt"></i> GK Quiz</td><td>Nabeel</td><td>Shaheem</td><td>Fabin</td><td><span class="a-plus-badge">None</span></td></tr>
+                                <tr><td><i class="fas fa-utensils"></i> Geo Giant</td><td>Chef Amine</td><td>Douja El Amrani</td><td>Hicham Laaroussi</td><td><span class="a-plus-badge">Lamia Chafai</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="text-align:right; margin-top:1rem; color:var(--text-muted);"><i class="fas fa-sync-alt fa-spin"></i> Live results · controller access only</p>
+                </div>
+            </section>
+
+            <!-- ABOUT -->
+            <section class="page-section" id="page-about">
+                <div class="section-title">
+                    <span class="title-accent"></span>
+                    <i class="fas fa-info-circle"></i> About Arte Fikrah
+                </div>
+                <div class="about-card">
+                    <p>
+                        <span class="highlight">Arte Fikrah</span> — meaning <em>"Art of the Idea"</em> — is a
+                        forward-thinking
+                        cultural festival founded in 2018. We bridge the rich artistic heritage of the Islamic world
+                        and
+                        Andalusian legacy with bold, contemporary creative practices.
+                    </p>
+                    <p style="margin-top:1.2rem;">
+                        From generative art installations to live electronic-maqam fusion performances, Arte Fikrah
+                        is where
+                        tradition collides with the avant-garde. Our mission is to create a global platform for artists
+                        who
+                        dare to reimagine cultural identity through a modern lens.
+                    </p>
+                    <p style="margin-top:1.2rem;">
+                        📍 <strong>Venue:</strong>Darunnajath Islamic Complex Vallapuzha<br>
+                        📅 <strong>Dates:</strong> 17 May 2026<br>
+                        🎟️ <strong>Entry:</strong> Free & open to all. Registration required for candidates.
+                    </p>
+                    <p style="margin-top:1rem;">
+                        <i class="fas fa-envelope"></i> alfalahdnic@gmail.com &nbsp;|&nbsp;
+                       
+                    </p>
+                    <div class="social-row">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <span>✦</span><span class="divider-dot"></span>
+            © 2026 Arte Fikrah — Cultural Art Festival
+            <span class="divider-dot"></span><span>✦</span>
+            <br>
+            <small>Teams · Results · Candidates · About</small>
+        </footer>
+    </div>
+     <!-- LOCK OVERLAY MODAL (popup authentication) -->
+    <div id="resultsAuthOverlay" class="results-lock-overlay">
+        <div class="auth-card">
+            <i class="fas fa-lock lock-icon"></i>
+            <h3>Results Restricted</h3>
+            <p>🔐 Controller credentials required</p>
+            <div id="authErrorMsg" class="auth-error"><i class="fas fa-exclamation-triangle"></i> Invalid username or password</div>
+            <div class="input-group"><label><i class="fas fa-user"></i> Username</label><input type="text" id="loginUsername" placeholder="controller_username"></div>
+            <div class="input-group"><label><i class="fas fa-key"></i> Password</label><input type="password" id="loginPassword" placeholder="••••••"></div>
+            <div class="auth-actions"><button id="submitAuthBtn" class="btn-auth"><i class="fas fa-unlock-alt"></i> Unlock Results</button><button id="closeAuthBtn" class="btn-auth btn-auth-secondary">Cancel</button></div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ===== DOM ELEMENTS =====
+            const navLinks = document.querySelectorAll('.nav-links li a');
+            const allSections = document.querySelectorAll('.page-section');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinksContainer = document.getElementById('navLinks');
+            const mainHeader = document.getElementById('mainHeader');
+            const particlesCanvas = document.getElementById('particlesCanvas');
+            const ctx = particlesCanvas.getContext('2d');
+
+            // ===== PARTICLE SYSTEM =====
+            let particles = [];
+            const particleCount = 80;
+
+            function resizeCanvas() {
+                particlesCanvas.width = window.innerWidth;
+                particlesCanvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+                reset() {
+                    this.x = Math.random() * particlesCanvas.width;
+                    this.y = Math.random() * particlesCanvas.height;
+                    this.size = Math.random() * 2.5 + 0.8;
+                    this.speedX = (Math.random() - 0.5) * 0.6;
+                    this.speedY = (Math.random() - 0.5) * 0.6;
+                    this.opacity = Math.random() * 0.5 + 0.15;
+                    this.opacitySpeed = (Math.random() - 0.5) * 0.008;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.opacity += this.opacitySpeed;
+                    if (this.opacity > 0.65 || this.opacity < 0.08) this.opacitySpeed *= -1;
+                    if (this.x < -20 || this.x > particlesCanvas.width + 20 ||
+                        this.y < -20 || this.y > particlesCanvas.height + 20) {
+                        this.reset();
+                    }
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
+                    ctx.fill();
+                    // subtle glow
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * 2.5, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255,169,77,${this.opacity * 0.3})`;
+                    ctx.fill();
+                }
+            }
+
+            function initParticles() {
+                particles = [];
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle());
+                }
+            }
+            initParticles();
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                // draw connections
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 130) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(255,255,255,${0.04 * (1 - dist / 130)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animateParticles);
+            }
+            animateParticles();
+
+            // ===== PAGE NAVIGATION =====
+            function navigateToPage(pageName) {
+                // Update sections
+                allSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                const targetSection = document.getElementById('page-' + pageName);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    // Re-trigger animation
+                    targetSection.style.animation = 'none';
+                    targetSection.offsetHeight;
+                    targetSection.style.animation = '';
+                }
+                // Update nav active state
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-page') === pageName) {
+                        link.classList.add('active');
+                    }
+                });
+                // Close mobile menu
+                navLinksContainer.classList.remove('open');
+                // Scroll to top smoothly
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                // Update URL hash
+                if (pageName === 'home') {
+                    history.pushState(null, '', window.location.pathname);
+                } else {
+                    history.pushState(null, '', '#' + pageName);
+                }
+            }
+
+            // Nav click handlers
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('data-page');
+                    navigateToPage(page);
+                });
+            });
+
+            // Button data-nav handlers (for hero buttons)
+            document.addEventListener('click', function(e) {
+                const navBtn = e.target.closest('[data-nav]');
+                if (navBtn) {
+                    e.preventDefault();
+                    const page = navBtn.getAttribute('data-nav');
+                    navigateToPage(page);
+                }
+            });
+
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinksContainer.classList.toggle('open');
+                const icon = this.querySelector('i');
+                if (navLinksContainer.classList.contains('open')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // ===== HEADER SCROLL EFFECT =====
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                if (scrollTimeout) cancelAnimationFrame(scrollTimeout);
+                scrollTimeout = requestAnimationFrame(function() {
+                    if (window.scrollY > 30) {
+                        mainHeader.classList.add('scrolled');
+                    } else {
+                        mainHeader.classList.remove('scrolled');
+                    }
+                });
+            });
+
+            // ===== HANDLE BROWSER BACK/FORWARD =====
+            window.addEventListener('popstate', function() {
+                const hash = window.location.hash.replace('#', '');
+                const validPages = ['home', 'teams', 'results', 'candidates', 'about'];
+                const page = validPages.includes(hash) ? hash : 'home';
+                navigateToPage(page);
+            });
+
+            // ===== INITIAL LOAD =====
+            const initialHash = window.location.hash.replace('#', '');
+            const validPages = ['home', 'teams', 'results', 'candidates', 'about'];
+            if (validPages.includes(initialHash) && initialHash !== 'home') {
+                navigateToPage(initialHash);
+            }
+
+            // ===== KEYBOARD NAVIGATION =====
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && navLinksContainer.classList.contains('open')) {
+                    navLinksContainer.classList.remove('open');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // ===== INTERSECTION OBSERVER FOR CARDS =====
+            const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.modern-card, .about-card, .table-wrapper').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s cubic-bezier(0.34,1.56,0.64,1)';
+                observer.observe(el);
+                // Trigger initial check
+                setTimeout(() => {
+                    if (el.getBoundingClientRect().top < window.innerHeight) {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }
+                }, 200);
+            });
+
+            console.log('%c🎨 Arte Fikrah %cModern Art Festival %cReady',
+                'font-size:1.5rem;font-weight:bold;color:#ffa94d;',
+                'font-size:1rem;color:#e8e8f0;',
+                'color:#20c997;');
+            console.log('%c✦ Where heritage meets the avant-garde ✦', 'color:#f06595;font-style:italic;');
+        })();
+        (function(){
+            // ---------- CONTROLLER CREDENTIALS (secure demo)
+            const VALID_USERNAME = "admin.in";
+            const VALID_PASSWORD = "Artefikrah.in";
+            // session storage to persist unlock for current session
+            let resultsUnlocked = sessionStorage.getItem("resultsUnlocked") === "true";
+
+            // DOM elements
+            const resultsSection = document.getElementById("page-results");
+            const resultsWrapper = document.getElementById("resultsContentWrapper");
+            const overlay = document.getElementById("resultsAuthOverlay");
+            const submitBtn = document.getElementById("submitAuthBtn");
+            const closeBtn = document.getElementById("closeAuthBtn");
+            const usernameInput = document.getElementById("loginUsername");
+            const passwordInput = document.getElementById("loginPassword");
+            const errorDiv = document.getElementById("authErrorMsg");
+            const accessBadgeContainer = document.getElementById("accessBadgeContainer");
+
+            function updateResultsAccessUI() {
+                if (!resultsWrapper) return;
+                if (resultsUnlocked) {
+                    resultsWrapper.classList.remove("results-locked-blur");
+                    // remove any blur effect, make interactive
+                    if(accessBadgeContainer) {
+                        accessBadgeContainer.innerHTML = `<div class="unlock-badge"><i class="fas fa-check-circle"></i> ✅ Controller Access Granted · Results visible <button id="forceLockBtn" class="btn-small-unlock"><i class="fas fa-lock"></i> Lock</button></div>`;
+                        const lockBtn = document.getElementById("forceLockBtn");
+                        if(lockBtn) lockBtn.onclick = () => { resultsUnlocked = false; sessionStorage.setItem("resultsUnlocked","false"); updateResultsAccessUI(); };
+                    }
+                } else {
+                    resultsWrapper.classList.add("results-locked-blur");
+                    if(accessBadgeContainer) {
+                        accessBadgeContainer.innerHTML = `<div class="unlock-badge lock-warning-badge"><i class="fas fa-lock"></i> 🔒 Results locked — Controller only <button id="showUnlockModalBtn" class="btn-small-unlock"><i class="fas fa-key"></i> Unlock</button></div>`;
+                        const unlockModalBtn = document.getElementById("showUnlockModalBtn");
+                        if(unlockModalBtn) unlockModalBtn.onclick = () => { showAuthModal(); };
+                    }
+                }
+            }
+
+            function showAuthModal() {
+                errorDiv.style.display = "none";
+                usernameInput.value = "";
+                passwordInput.value = "";
+                overlay.classList.add("active");
+                usernameInput.focus();
+            }
+
+            function hideAuthModal() { overlay.classList.remove("active"); }
+
+            function tryUnlock() {
+                const user = usernameInput.value.trim();
+                const pwd = passwordInput.value;
+                if(user === VALID_USERNAME && pwd === VALID_PASSWORD) {
+                    resultsUnlocked = true;
+                    sessionStorage.setItem("resultsUnlocked","true");
+                    hideAuthModal();
+                    updateResultsAccessUI();
+                    errorDiv.style.display = "none";
+                } else {
+                    errorDiv.style.display = "block";
+                    setTimeout(() => { errorDiv.style.opacity = "1"; }, 10);
+                }
+            }
+
+            submitBtn.addEventListener("click", tryUnlock);
+            closeBtn.addEventListener("click", hideAuthModal);
+            // close overlay on background click
+            overlay.addEventListener("click", (e) => { if(e.target === overlay) hideAuthModal(); });
+            // enter key submit
+            const inputs = [usernameInput, passwordInput];
+            inputs.forEach(inp => inp.addEventListener("keypress", (e) => { if(e.key === "Enter") tryUnlock(); }));
+
+            // Intercept when clicking "Results" from navigation to check if locked, and prompt if needed but not blocking auto
+            // also when section becomes active and locked, we show overlay optionally? The requirement: "only controllers with password/username" -> upon trying to view results if locked we show lock modal.
+            // We also attach a listener before showing page-results.
+            function handleResultsPageAccess() {
+                if(!resultsUnlocked) {
+                    // if the results page is about to become visible and it's locked, we ask for credentials.
+                    showAuthModal();
+                }
+            }
+
+            // Navigation override: check if target is results & locked, trigger modal
+            const navLinksAll = document.querySelectorAll('.nav-links li a');
+            const allSections = document.querySelectorAll('.page-section');
+            function navigateToPage(pageName) {
+                allSections.forEach(section => section.classList.remove('active'));
+                const targetSection = document.getElementById('page-' + pageName);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    if(pageName === 'results' && !resultsUnlocked) {
+                        // if results not unlocked, show auth modal on top and keep content blurred
+                        showAuthModal();
+                    } else if(pageName === 'results' && resultsUnlocked) {
+                        // unlocked, ensure UI shows unlocked badge
+                        updateResultsAccessUI();
+                    }
+                    // update active nav state
+                    navLinksAll.forEach(link => {
+                        link.classList.remove('active');
+                        if(link.getAttribute('data-page') === pageName) link.classList.add('active');
+                    });
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    history.pushState(null, '', pageName === 'home' ? window.location.pathname : '#' + pageName);
+                }
+            }
+            // rebind nav events
+            navLinksAll.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('data-page');
+                    navigateToPage(page);
+                });
+            });
+            document.querySelectorAll('[data-nav]').forEach(btn => {
+                btn.addEventListener('click', function(e) { e.preventDefault(); const p = this.getAttribute('data-nav'); navigateToPage(p); });
+            });
+            window.addEventListener('popstate', () => {
+                const hash = window.location.hash.replace('#', '');
+                const valid = ['home','teams','results','candidates','about'];
+                const pg = valid.includes(hash) ? hash : 'home';
+                navigateToPage(pg);
+            });
+            // initial load check
+            const initialHash = window.location.hash.replace('#', '');
+            if(['home','teams','results','candidates','about'].includes(initialHash)) navigateToPage(initialHash);
+            else navigateToPage('home');
+
+            // after UI is rendered update results lock badge
+            updateResultsAccessUI();
+
+            // re-check overlay close after unlock
+            // If the user clicks on results via external but already unlocked, fine; if unlocked and results active, shows badge.
+            // Additional: blur effect and pointer-events none on table while locked.
+            const style = document.createElement('style');
+            style.textContent = `.results-locked-blur { filter: blur(5px); pointer-events: none; user-select: none; transition: filter 0.2s; } .results-protected-content { transition: filter 0.2s; }`;
+            document.head.appendChild(style);
+
+            // particle background (simple)
+            const canvas = document.getElementById('particlesCanvas');
+            if(canvas) {
+                let ctx2 = canvas.getContext('2d');
+                function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+                resize(); window.addEventListener('resize', resize);
+                let particles = [];
+                for(let i=0;i<70;i++) particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, size:Math.random()*2+1, dx:(Math.random()-0.5)*0.5, dy:(Math.random()-0.5)*0.5, alpha:Math.random()*0.4+0.1});
+                function animateP() {
+                    if(!ctx2) return;
+                    ctx2.clearRect(0,0,canvas.width,canvas.height);
+                    particles.forEach(p => {
+                        p.x+=p.dx; p.y+=p.dy;
+                        if(p.x<0) p.x=canvas.width; if(p.x>canvas.width) p.x=0;
+                        if(p.y<0) p.y=canvas.height; if(p.y>canvas.height) p.y=0;
+                        ctx2.beginPath(); ctx2.arc(p.x,p.y,p.size,0,Math.PI*2);
+                        ctx2.fillStyle = `rgba(255,255,245,${p.alpha})`;
+                        ctx2.fill();
+                    });
+                    requestAnimationFrame(animateP);
+                }
+                animateP();
+            }
+
+            // header scroll effect
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', () => { if(window.scrollY>30) header.classList.add('scrolled'); else header.classList.remove('scrolled'); });
+            // mobile menu
+            const mobBtn = document.getElementById('mobileMenuBtn');
+            const navContainer = document.getElementById('navLinks');
+            if(mobBtn) mobBtn.addEventListener('click', () => { navContainer.classList.toggle('open'); const icon = mobBtn.querySelector('i'); if(navContainer.classList.contains('open')) icon.className = 'fas fa-times'; else icon.className = 'fas fa-bars'; });
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Arte Fikrah | Modern Art Fest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #161622;
+            --bg-glass: rgba(22, 22, 40, 0.65);
+            --text-primary: #e8e8f0;
+            --text-secondary: #b0b0c8;
+            --text-muted: #7a7a9a;
+            --accent-1: #ff6b6b;
+            --accent-2: #ffa94d;
+            --accent-3: #ffd43b;
+            --accent-cool: #748ffc;
+            --accent-teal: #20c997;
+            --accent-pink: #f06595;
+            --gradient-1: linear-gradient(135deg, #ff6b6b, #ffa94d);
+            --gradient-2: linear-gradient(135deg, #748ffc, #20c997);
+            --gradient-3: linear-gradient(135deg, #f06595, #ff6b6b);
+            --gradient-hero: linear-gradient(135deg, #ff6b6b 0%, #ffa94d 30%, #f06595 60%, #748ffc 100%);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 0 60px rgba(255, 107, 107, 0.15), 0 0 120px rgba(116, 143, 252, 0.08);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 10px;
+            --transition-smooth: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --font-display: 'SF Pro Display', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --font-body: 'SF Pro Text', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-2);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-1);
+        }
+
+        #particlesCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.25;
+            pointer-events: none;
+            z-index: 0;
+            animation: orbFloat 12s ease-in-out infinite;
+        }
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-1);
+            top: -15%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-cool);
+            bottom: -12%;
+            right: -8%;
+            animation-delay: -4s;
+            animation-duration: 14s;
+        }
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: var(--accent-pink);
+            top: 50%;
+            left: 55%;
+            animation-delay: -8s;
+            animation-duration: 16s;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(60px, -40px) scale(1.15); }
+            50% { transform: translate(-30px, 50px) scale(0.9); }
+            75% { transform: translate(-50px, -30px) scale(1.1); }
+        }
+
+        .app-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem 3rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            padding: 1.2rem 2rem;
+            background: var(--bg-glass);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-card);
+            position: sticky;
+            top: 1rem;
+            z-index: 100;
+            transition: all var(--transition-smooth);
+        }
+        .header.scrolled {
+            background: rgba(18, 18, 26, 0.9);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(255, 107, 107, 0.35);
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+        @keyframes logoPulse {
+            0%, 100% { box-shadow: 0 8px 24px rgba(255, 107, 107, 0.35); }
+            50% { box-shadow: 0 8px 40px rgba(255, 107, 107, 0.65), 0 0 60px rgba(255, 169, 77, 0.3); }
+        }
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+        .nav-links li a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            transition: all var(--transition-bounce);
+            position: relative;
+            white-space: nowrap;
+            border: 1px solid transparent;
+        }
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--border-glass);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        .nav-links li a.active {
+            background: var(--gradient-1);
+            border-color: transparent;
+            color: #fff;
+            font-weight: 700;
+            box-shadow: 0 8px 28px rgba(255, 107, 107, 0.4);
+        }
+        .nav-links li a i {
+            font-size: 0.9rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: 1px solid var(--border-glass);
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 0.8rem;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-smooth);
+        }
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        main {
+            flex: 1;
+        }
+        .page-section {
+            display: none;
+            animation: pageReveal 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+        .page-section.active {
+            display: block;
+        }
+        @keyframes pageReveal {
+            from { opacity: 0; transform: translateY(30px); filter: blur(4px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            line-height: 1.2;
+        }
+        .section-title .title-accent {
+            display: inline-block;
+            width: 8px;
+            height: 48px;
+            border-radius: 20px;
+            background: var(--gradient-1);
+            flex-shrink: 0;
+        }
+        .section-title i {
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            font-size: 2.4rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+        }
+        .modern-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all var(--transition-bounce);
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+        .modern-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            border-radius: 3px 3px 0 0;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+        }
+        .modern-card:hover::before { opacity: 1; }
+        .modern-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-glow), 0 20px 50px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+        .modern-card .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            transition: transform var(--transition-bounce);
+        }
+        .modern-card:hover .card-icon {
+            transform: scale(1.2) rotate(-5deg);
+        }
+        .modern-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        .modern-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        .badge-pill {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-glass);
+            transition: all var(--transition-smooth);
+        }
+        .modern-card:hover .badge-pill {
+            background: var(--gradient-1);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-glass);
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-card);
+        }
+        .modern-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+        .modern-table thead th {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 1rem 1.2rem;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            border-bottom: 2px solid var(--border-glass);
+            font-family: var(--font-display);
+        }
+        .modern-table tbody td {
+            padding: 0.9rem 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            transition: background var(--transition-smooth);
+        }
+        .modern-table tbody tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .modern-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .rank-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+        .rank-gold { background: var(--gradient-1); color: #fff; }
+        .rank-silver { background: linear-gradient(135deg, #adb5bd, #6c757d); color: #fff; }
+        .rank-bronze { background: linear-gradient(135deg, #e67e22, #d35400); color: #fff; }
+        .a-plus-badge {
+            background: linear-gradient(135deg, #20c997, #748ffc);
+            color: #fff;
+            padding: 0.25rem 0.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        .about-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            max-width: 850px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-card);
+            line-height: 1.9;
+            font-size: 1.1rem;
+        }
+        .about-card .highlight { color: var(--accent-2); font-weight: 700; }
+        .social-row {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.8rem;
+            font-size: 1.6rem;
+        }
+        .social-row a {
+            color: var(--text-muted);
+            transition: all var(--transition-bounce);
+            text-decoration: none;
+        }
+        .social-row a:hover {
+            color: var(--accent-1);
+            transform: translateY(-4px) scale(1.15);
+        }
+
+        .hero-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+        }
+        .hero-text { flex: 1; min-width: 280px; }
+        .hero-text .hero-greeting {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-2);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .hero-text h2 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero-text p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+        .hero-visual {
+            flex: 1;
+            min-width: 260px;
+            text-align: center;
+            font-size: 7rem;
+            animation: heroFloat 5s ease-in-out infinite;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .hero-visual i {
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            transition: transform var(--transition-bounce);
+            cursor: default;
+        }
+        .hero-visual i:hover { transform: scale(1.2) rotate(8deg); }
+        @keyframes heroFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .btn-modern {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            background: var(--gradient-1);
+            color: #fff;
+            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.4);
+            transition: all var(--transition-bounce);
+        }
+        .btn-modern:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(255, 107, 107, 0.55);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--border-glass);
+            box-shadow: none;
+            color: #fff;
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+        .stats-row {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+        }
+        .stat-item { text-align: center; min-width: 80px; }
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+        .footer .divider-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-2);
+            margin: 0 0.8rem;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 768px) {
+            .app-container { padding: 0.8rem 1rem 2rem; }
+            .header { padding: 1rem 1.2rem; flex-direction: column; align-items: flex-start; gap: 0.8rem; top: 0.5rem; }
+            .nav-links { display: none; flex-direction: column; width: 100%; gap: 0.3rem; }
+            .nav-links.open { display: flex; }
+            .nav-links li a { justify-content: center; padding: 0.7rem; border-radius: var(--radius-sm); }
+            .mobile-menu-btn { display: block; position: absolute; right: 1.2rem; top: 1.2rem; }
+            .section-title { font-size: 2rem; }
+            .hero-text h2 { font-size: 2.4rem; }
+            .hero-visual { font-size: 4rem; }
+            .modern-card { padding: 1.5rem 1rem; }
+            .about-card { padding: 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            .hero-text h2 { font-size: 1.9rem; }
+            .section-title { font-size: 1.6rem; }
+            .btn-group { flex-direction: column; }
+            .btn-modern { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <canvas id="particlesCanvas"></canvas>
+
+    <div class="app-container">
+        <header class="header" id="mainHeader">
+            <div class="logo-group">
+                <div class="logo-icon"><i class="fas fa-feather-alt"></i></div>
+                <span class="logo-text">Arte Fikrah</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#" data-page="home" class="active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" data-page="teams"><i class="fas fa-users"></i> Teams</a></li>
+                    <li><a href="#" data-page="results"><i class="fas fa-trophy"></i> Results</a></li>
+                    <li><a href="#" data-page="candidates"><i class="fas fa-user-graduate"></i> Candidates</a></li>
+                    <li><a href="#" data-page="about"><i class="fas fa-info-circle"></i> About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <!-- HOME -->
+            <section class="page-section active" id="page-home">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <p class="hero-greeting">✦ Welcome to the future of cultural art</p>
+                        <h2>Arte<br>Fikrah</h2>
+                        <p>A cutting-edge celebration where heritage meets bold contemporary expression. Immerse yourself in a world of visionary artists, electrifying performances, and cultural innovation.</p>
+                        <div class="btn-group">
+                            <a href="#" class="btn-modern" data-nav="teams"><i class="fas fa-users"></i> Explore Teams</a>
+                            <a href="#" class="btn-modern btn-outline" data-nav="results"><i class="fas fa-trophy"></i> View Results</a>
+                        </div>
+                        <div class="stats-row">
+                            <div class="stat-item"><div class="stat-number">20+</div><div class="stat-label">Teams</div></div>
+                            <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">Artists</div></div>
+                            <div class="stat-item"><div class="stat-number">5</div><div class="stat-label">Days</div></div>
+                            <div class="stat-item"><div class="stat-number">∞</div><div class="stat-label">Creativity</div></div>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <i class="fas fa-palette"></i>
+                        <i class="fas fa-guitar"></i>
+                        <i class="fas fa-paint-brush"></i>
+                        <i class="fas fa-masks-theater"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TEAMS -->
+            <section class="page-section" id="page-teams">
+                <div class="section-title"><span class="title-accent"></span><i class="fas fa-users"></i> Artistic Teams</div>
+                <div class="cards-grid">
+                    <div class="modern-card"><div class="card-icon"><i class="fas fa-watercolor"></i></div><h3>Zahra Collective</h3><p>Revolutionizing traditional arabesque with digital-age geometric patterns.</p><span class="badge-pill">5 Members</span></div>
+                    <div class="modern-card"><div class="card-icon"><i class="fas fa-guitar"></i></div><h3>Oud Alwan</h3><p>Andalusian-electronic fusion ensemble pushing sonic boundaries.</p><span class="badge-pill">7 Members</span></div>
+                    <div class="modern-card"><div class="card-icon"><i class="fas fa-feather"></i></div><h3>Diwan Calligraphy</h3><p>Where ancient script meets modern abstract expressionism.</p><span class="badge-pill">4 Members</span></div>
+                    <div class="modern-card"><div class="card-icon"><i class="fas fa-theater-masks"></i></div><h3>Hikaya Stage</h3><p>Immersive shadow theatre with projection mapping technology.</p><span class="badge-pill">6 Members</span></div>
+                    <div class="modern-card"><div class="card-icon"><i class="fas fa-camera-retro"></i></div><h3>Noor Lens</h3><p>Cultural photography collective capturing the soul of tradition.</p><span class="badge-pill">3 Members</span></div>
+                    <div class="modern-card"><div class="card-icon"><i class="fas fa-microphone-alt"></i></div><h3>Sawt Tarab</h3><p>Vocal ensemble reimagining classical maqam for modern ears.</p><span class="badge-pill">5 Members</span></div>
+                </div>
+            </section>
+
+           
+
+            <!-- CANDIDATES -->
+            <section class="page-section" id="page-candidates">
+                <div class="section-title"><span class="title-accent"></span><i class="fas fa-user-graduate"></i> Featured Candidates</div>
+                <div class="cards-grid">
+                    <div class="modern-card"><div class="card-icon"><i class="fas fa-female"></i></div><h3>Amina Zahiri</h3><p>Abstract painter merging Berber motifs with digital surrealism.</p><span class="badge-pill"><i class="fas fa-star"></i> Fine Art</span></div>
+                    <div class="modern-card"><div class="card-icon"><i class="fas fa-male"></i></div><h3>Idris Tazi</h3><p>Oud virtuoso blending Gnawa rhythms with ambient electronica.</p><span class="badge-pill"><i class="fas fa-music"></i> Music</span></div>
+                    <div class="modern-card"><div class="card-icon"><i class="fas fa-female"></i></div><h3>Nour Mansouri</h3><p>Master calligrapher innovating Maghribi script for contemporary design.</p><span class="badge-pill"><i class="fas fa-pen"></i> Calligraphy</span></div>
+                    <div class="modern-card"><div class="card-icon"><i class="fas fa-male"></i></div><h3>Karim Bennis</h3><p>Playwright & digital storyteller preserving oral heritage through AR.</p><span class="badge-pill"><i class="fas fa-mask"></i> Theatre</span></div>
+                    <div class="modern-card"><div class="card-icon"><i class="fas fa-female"></i></div><h3>Sara El Ouafi</h3><p>Photographer capturing the vanishing architectural poetry of medinas.</p><span class="badge-pill"><i class="fas fa-camera"></i> Photography</span></div>
+                    <div class="modern-card"><div class="card-icon"><i class="fas fa-male"></i></div><h3>Rayan Choukri</h3><p>Sculptor working with recycled materials & Islamic geometry.</p><span class="badge-pill"><i class="fas fa-cube"></i> Sculpture</span></div>
+                </div>
+            </section>
+
+            <!-- ABOUT -->
+            <section class="page-section" id="page-about">
+                <div class="section-title"><span class="title-accent"></span><i class="fas fa-info-circle"></i> About Arte Fikrah</div>
+                <div class="about-card">
+                    <p><span class="highlight">Arte Fikrah</span> — meaning <em>"Art of the Idea"</em> — is a forward-thinking cultural festival founded in 2018. We bridge the rich artistic heritage of the Islamic world and Andalusian legacy with bold, contemporary creative practices.</p>
+                    <p style="margin-top:1.2rem;">From generative art installations to live electronic-maqam fusion performances, Arte Fikrah is where tradition collides with the avant-garde. Our mission is to create a global platform for artists who dare to reimagine cultural identity through a modern lens.</p>
+                    <p style="margin-top:1.2rem;">📍 <strong>Venue:</strong> Alhambra Cultural Hall, Granada Spirit Complex<br>📅 <strong>Dates:</strong> 20–25 May 2026<br>🎟️ <strong>Entry:</strong> Free & open to all. Registration required for candidates.</p>
+                    <p style="margin-top:1rem;"><i class="fas fa-envelope"></i> contact@artefikrah.art &nbsp;|&nbsp; <i class="fas fa-phone-alt"></i> +212 6 78 90 12 34</p>
+                    <div class="social-row">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <span>✦</span><span class="divider-dot"></span>
+            © 2026 Arte Fikrah — Cultural Art Festival
+            <span class="divider-dot"></span><span>✦</span>
+            <br><small>Teams · Results · Candidates · About</small>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            const navLinks = document.querySelectorAll('.nav-links li a');
+            const allSections = document.querySelectorAll('.page-section');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinksContainer = document.getElementById('navLinks');
+            const mainHeader = document.getElementById('mainHeader');
+            const particlesCanvas = document.getElementById('particlesCanvas');
+            const ctx = particlesCanvas.getContext('2d');
+
+            let particles = [];
+            const particleCount = 80;
+
+            function resizeCanvas() {
+                particlesCanvas.width = window.innerWidth;
+                particlesCanvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            class Particle {
+                constructor() { this.reset(); }
+                reset() {
+                    this.x = Math.random() * particlesCanvas.width;
+                    this.y = Math.random() * particlesCanvas.height;
+                    this.size = Math.random() * 2.5 + 0.8;
+                    this.speedX = (Math.random() - 0.5) * 0.6;
+                    this.speedY = (Math.random() - 0.5) * 0.6;
+                    this.opacity = Math.random() * 0.5 + 0.15;
+                    this.opacitySpeed = (Math.random() - 0.5) * 0.008;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.opacity += this.opacitySpeed;
+                    if (this.opacity > 0.65 || this.opacity < 0.08) this.opacitySpeed *= -1;
+                    if (this.x < -20 || this.x > particlesCanvas.width + 20 ||
+                        this.y < -20 || this.y > particlesCanvas.height + 20) {
+                        this.reset();
+                    }
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * 2.5, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255,169,77,${this.opacity * 0.3})`;
+                    ctx.fill();
+                }
+            }
+
+            function initParticles() {
+                particles = [];
+                for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+            }
+            initParticles();
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
+                particles.forEach(p => { p.update(); p.draw(); });
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 130) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(255,255,255,${0.04 * (1 - dist / 130)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animateParticles);
+            }
+            animateParticles();
+
+            function navigateToPage(pageName) {
+                allSections.forEach(section => section.classList.remove('active'));
+                const targetSection = document.getElementById('page-' + pageName);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    targetSection.style.animation = 'none';
+                    targetSection.offsetHeight;
+                    targetSection.style.animation = '';
+                }
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-page') === pageName) link.classList.add('active');
+                });
+                navLinksContainer.classList.remove('open');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (pageName === 'home') history.pushState(null, '', window.location.pathname);
+                else history.pushState(null, '', '#' + pageName);
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navigateToPage(this.getAttribute('data-page'));
+                });
+            });
+
+            document.addEventListener('click', function(e) {
+                const navBtn = e.target.closest('[data-nav]');
+                if (navBtn) {
+                    e.preventDefault();
+                    navigateToPage(navBtn.getAttribute('data-nav'));
+                }
+            });
+
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinksContainer.classList.toggle('open');
+                const icon = this.querySelector('i');
+                if (navLinksContainer.classList.contains('open')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 30) mainHeader.classList.add('scrolled');
+                else mainHeader.classList.remove('scrolled');
+            });
+
+            window.addEventListener('popstate', function() {
+                const hash = window.location.hash.replace('#', '');
+                const validPages = ['home','teams','results','candidates','about'];
+                navigateToPage(validPages.includes(hash) ? hash : 'home');
+            });
+
+            const initialHash = window.location.hash.replace('#', '');
+            if (['teams','results','candidates','about'].includes(initialHash)) navigateToPage(initialHash);
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && navLinksContainer.classList.contains('open')) {
+                    navLinksContainer.classList.remove('open');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+            document.querySelectorAll('.modern-card, .about-card, .table-wrapper').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s cubic-bezier(0.34,1.56,0.64,1)';
+                observer.observe(el);
+                setTimeout(() => {
+                    if (el.getBoundingClientRect().top < window.innerHeight) {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }
+                }, 200);
+            });
+        })();
+    </script>
+</body>
+</html>
