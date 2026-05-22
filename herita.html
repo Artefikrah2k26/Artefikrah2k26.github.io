@@ -1,49 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><link rel="shortcut icon" href="file:///C:/Users/DNIC/Downloads/LOGO_FEST_PRINT__CMYK_-removebg-preview.png" type="image/x-icon">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Herita</title>
-    <link rel="stylesheet" href="file:///C:/Users/DNIC/Downloads/LOGO_FEST_PRINT__CMYK_-removebg-preview.png">
-       
-       <!-- TEAM DETAILS (Roster) -->
-        <section class="page-section" id="page-team-details">
-            <div class="section-title"><span class="title-accent"></span><i class="fas fa-id-card"></i> Zahra Collective · Roster</div>
-            <p style="color:var(--text-muted); margin-bottom:2rem;">First leader, second leader, and all 11 members</p>
-
-            <!-- Leaders -->
-            <div style="display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center; margin-bottom:2rem;">
-                <div class="member-card" style="flex:1; min-width:220px;">
-                    <div class="avatar"><i class="fas fa-crown"></i></div>
-                    <span class="leader-tag">First Leader</span>
-                    <h3>Layla El Amrani</h3>
-                    <p style="color:var(--text-muted);">Founder & Creative Director</p>
-                </div>
-                <div class="member-card" style="flex:1; min-width:220px;">
-                    <div class="avatar"><i class="fas fa-star"></i></div>
-                    <span class="leader-tag">Second Leader</span>
-                    <h3>Omar Ziani</h3>
-                    <p style="color:var(--text-muted);">Technical Lead</p>
-                </div>
-            </div>
-<!-- 11 Members -->
-            <div class="team-roster">
-                <div class="member-card"><div class="avatar"><i class="fas fa-paint-brush"></i></div><h3>Mona Fassi</h3><p>Pattern Designer</p></div>
-                <div class="member-card"><div class="avatar"><i class="fas fa-vector-square"></i></div><h3>Rayan El Ouafi</h3><p>Digital Illustrator</p></div>
-                <div class="member-card"><div class="avatar"><i class="fas fa-drafting-compass"></i></div><h3>Samir Kader</h3><p>Geometric Analyst</p></div>
-                <div class="member-card"><div class="avatar"><i class="fas fa-pencil-ruler"></i></div><h3>Nadia Chafik</h3><p>Sketch Artist</p></div>
-                <div class="member-card"><div class="avatar"><i class="fas fa-fill-drip"></i></div><h3>Ali Benjelloun</h3><p>Colorist</p></div>
-                <div class="member-card"><div class="avatar"><i class="fas fa-bezier-curve"></i></div><h3>Sara Tazi</h3><p>Vector Artist</p></div>
-                <div class="member-card"><div class="avatar"><i class="fas fa-layer-group"></i></div><h3>Houda Mansouri</h3><p>Texture Specialist</p></div>
-                <div class="member-card"><div class="avatar"><i class="fas fa-cube"></i></div><h3>Mehdi Ouazzani</h3><p>3D Modeler</p></div>
-                <div class="member-card"><div class="avatar"><i class="fas fa-print"></i></div><h3>Yasmine Benali</h3><p>Printmaker</p></div>
-                <div class="member-card"><div class="avatar"><i class="fas fa-project-diagram"></i></div><h3>Karim Bennis</h3><p>Installation Artist</p></div>
-                <div class="member-card"><div class="avatar"><i class="fas fa-palette"></i></div><h3>Rim Chaoui</h3><p>Mixed Media</p></div>
-            </div>
-        </section>
-    </main>
+    <title>Herita · Arte Fikrah 2K26</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Favicon (same style as main festival) -->
+    <link rel="shortcut icon" href="LOGO_FEST_PRINT__CMYK_-removebg-preview.png" type="image/x-icon">
     <style>
-     :root {
+        /* ========== GLOBAL DESIGN SYSTEM (copied from Arte Fikrah index) ========== */
+        :root {
             --bg-primary: #0a0a0f;
             --bg-secondary: #12121a;
             --bg-card: #161622;
@@ -92,25 +59,35 @@
             overflow-x: hidden;
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
+        /* custom scroll */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-1); }
+
+        /* floating orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.25;
+            pointer-events: none;
+            z-index: 0;
+            animation: orbFloat 12s ease-in-out infinite;
         }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-2);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-1);
+        .orb-1 { width: 500px; height: 500px; background: var(--accent-1); top: -15%; left: -10%; animation-delay: 0s; }
+        .orb-2 { width: 400px; height: 400px; background: var(--accent-cool); bottom: -12%; right: -8%; animation-delay: -4s; animation-duration: 14s; }
+        .orb-3 { width: 350px; height: 350px; background: var(--accent-pink); top: 50%; left: 55%; animation-delay: -8s; animation-duration: 16s; }
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(60px, -40px) scale(1.15); }
+            50% { transform: translate(-30px, 50px) scale(0.9); }
+            75% { transform: translate(-50px, -30px) scale(1.1); }
         }
 
-        /* ===== CANVAS PARTICLES BACKGROUND ===== */
+        /* particles canvas */
         #particlesCanvas {
             position: fixed;
             top: 0;
@@ -122,127 +99,586 @@
             opacity: 0.7;
         }
 
-        /* ===== ORB GLOW EFFECTS ===== */
-        .orb {
-            position: fixed;
+        /* app container */
+        .app-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem 3rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* header */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            padding: 1.2rem 2rem;
+            background: var(--bg-glass);
+            backdrop-filter: blur(24px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow-card);
+            position: sticky;
+            top: 1rem;
+            z-index: 100;
+            transition: all var(--transition-smooth);
+        }
+        .header.scrolled {
+            background: rgba(18, 18, 26, 0.9);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+        }
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(255, 107, 107, 0.35);
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+        @keyframes logoPulse {
+            0%, 100% { box-shadow: 0 8px 24px rgba(255, 107, 107, 0.35); }
+            50% { box-shadow: 0 8px 40px rgba(255, 107, 107, 0.65), 0 0 60px rgba(255, 169, 77, 0.3); }
+        }
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+        .nav-links li a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all var(--transition-bounce);
+            border: 1px solid transparent;
+        }
+        .nav-links li a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--border-glass);
+            transform: translateY(-2px);
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: 1px solid var(--border-glass);
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 0.8rem;
+            border-radius: var(--radius-sm);
+        }
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        /* page section styling */
+        .page-section {
+            animation: pageReveal 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+        @keyframes pageReveal {
+            from { opacity: 0; transform: translateY(30px); filter: blur(4px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .section-title .title-accent {
+            width: 8px;
+            height: 48px;
+            border-radius: 20px;
+            background: var(--gradient-1);
+        }
+        .section-title i {
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 2.4rem;
+        }
+
+        /* team roster grid */
+        .team-roster {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin-top: 2rem;
+        }
+
+        /* glass member cards (modern card style) */
+        .member-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 1.8rem 1.2rem;
+            text-align: center;
+            transition: all var(--transition-bounce);
+            box-shadow: var(--shadow-card);
+        }
+        .member-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-glow);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .member-card .avatar {
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.25;
-            pointer-events: none;
-            z-index: 0;
-            animation: orbFloat 12s ease-in-out infinite;
+            margin: 0 auto 1rem;
+            background: var(--gradient-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: transform var(--transition-bounce);
         }
-        .orb-1 {
-            width: 500px;
-            height: 500px;
-            background: var(--accent-1);
-            top: -15%;
-            left: -10%;
-            animation-delay: 0s;
+        .member-card:hover .avatar {
+            transform: scale(1.05) rotate(2deg);
         }
-        .orb-2 {
-            width: 400px;
-            height: 400px;
-            background: var(--accent-cool);
-            bottom: -12%;
-            right: -8%;
-            animation-delay: -4s;
-            animation-duration: 14s;
+        .member-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0.6rem 0 0.2rem;
+            color: #fff;
         }
-        .orb-3 {
-            width: 350px;
-            height: 350px;
-            background: var(--accent-pink);
-            top: 50%;
-            left: 55%;
-            animation-delay: -8s;
-            animation-duration: 16s;
+        .member-card p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .leader-tag {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            color: #fff;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.5px;
         }
 
-        @keyframes orbFloat {
-            0%,
-            100% {
-                transform: translate(0, 0) scale(1);
+        /* leaders row */
+        .leaders-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .leaders-row .member-card {
+            flex: 1;
+            min-width: 240px;
+            max-width: 320px;
+        }
+
+        /* footer */
+        .footer {
+            margin-top: 3.5rem;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .footer .divider-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-2);
+            margin: 0 0.8rem;
+            vertical-align: middle;
+        }
+
+        /* responsive */
+        @media (max-width: 768px) {
+            .app-container {
+                padding: 0.8rem 1rem 2rem;
             }
-            25% {
-                transform: translate(60px, -40px) scale(1.15);
+            .header {
+                padding: 1rem 1.2rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
             }
-            50% {
-                transform: translate(-30px, 50px) scale(0.9);
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
             }
-            75% {
-                transform: translate(-50px, -30px) scale(1.1);
+            .nav-links.open {
+                display: flex;
             }
-        }/* ---- Team Roster Section ---- */
-.team-roster {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 1.2rem;
+                top: 1.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .member-card .avatar {
+                width: 65px;
+                height: 65px;
+                font-size: 1.8rem;
+            }
+        }
 
-.member-card {
-    background: rgba(22, 22, 40, 0.7);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 1.5rem;
-    text-align: center;
-    transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-}
+        /* simple button */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: transparent;
+            border: 1px solid var(--border-glass);
+            border-radius: 60px;
+            padding: 0.6rem 1.4rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+        .back-link:hover {
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            border-color: var(--accent-2);
+        }
+    </style>
+</head>
+<body>
 
-.member-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 60px rgba(255, 107, 107, 0.15), 0 20px 50px rgba(0, 0, 0, 0.5);
-}
+    <!-- Floating orbs + particle canvas (from main index) -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <canvas id="particlesCanvas"></canvas>
 
-.member-card .avatar {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    margin: 0 auto 1rem;
-    background: linear-gradient(135deg, #748ffc, #20c997);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    color: #fff;
-}
+    <div class="app-container">
+        <!-- Header with navigation (consistent with main festival) -->
+        <header class="header" id="mainHeader">
+            <div class="logo-group">
+                <div class="logo-icon"><i class="fas fa-feather-alt"></i></div>
+                <span class="logo-text">Arte Fikrah</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Festival Home</a></li>
+                    <li><a href="index.html#teams"><i class="fas fa-users"></i> Teams</a></li>
+                    <li><a href="index.html#about"><i class="fas fa-info-circle"></i> About</a></li>
+                </ul>
+            </nav>
+        </header>
 
-.member-card h3 {
-    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin: 0.5rem 0 0.2rem;
-    color: #e8e8f0;
-}
+        <main>
+            <!-- Team Details Section -->
+            <section class="page-section" id="page-team-details">
+                <div class="section-title">
+                    <span class="title-accent"></span>
+                    <i class="fas fa-id-card"></i> Herita · Legacy of Art
+                </div>
+                <p style="color:var(--text-muted); margin-bottom: 2rem; font-size: 1.05rem;">
+                    <i class="fas fa-crown"></i> First & second leaders · 10 visionary members
+                </p>
 
-.member-card p {
-    color: #7a7a9a;
-    font-size: 0.85rem;
-    margin: 0;
-}
+                <!-- Leaders Row -->
+                <div class="leaders-row">
+                    <div class="member-card">
+                        <div class="avatar"><i class="fas fa-crown"></i></div>
+                        <span class="leader-tag">First Leader</span>
+                        <h3>Hamdan.PP</h3>
+                        <p>Creative Director · Visionary</p>
+                    </div>
+                    <div class="member-card">
+                        <div class="avatar"><i class="fas fa-star"></i></div>
+                        <span class="leader-tag">Second Leader</span>
+                        <h3>Jinan.PK</h3>
+                        <p>Iconic Lead · Cultural Curator</p>
+                    </div>
+                </div>
 
-.leader-tag {
-    display: inline-block;
-    padding: 0.2rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.7rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, #ff6b6b, #ffa94d);
-    color: #fff;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.5px;
-}
+                <!-- Full roster (all members) -->
+                <div class="team-roster">
+                    <div class="member-card">
+                        <div class="avatar"><i class="fas fa-paint-brush"></i></div>
+                        <h3>Razal.P</h3>
+                        <p>Pattern Designer</p>
+                    </div>
+                    <div class="member-card">
+                        <div class="avatar"><i class="fas fa-vector-square"></i></div>
+                        <h3>Nabhan.C</h3>
+                        <p>Digital Illustrator</p>
+                    </div>
+                    <div class="member-card">
+                        <div class="avatar"><i class="fas fa-drafting-compass"></i></div>
+                        <h3>Rihan.P</h3>
+                        <p>Geometric Analyst</p>
+                    </div>
+                    <div class="member-card">
+                        <div class="avatar"><i class="fas fa-pencil-ruler"></i></div>
+                        <h3>Arshad</h3>
+                        <p>Sketch Artist</p>
+                    </div>
+                    <div class="member-card">
+                        <div class="avatar"><i class="fas fa-fill-drip"></i></div>
+                        <h3>Shammas.O</h3>
+                        <p>Colorist</p>
+                    </div>
+                    <div class="member-card">
+                        <div class="avatar"><i class="fas fa-bezier-curve"></i></div>
+                        <h3>Nabeel.K</h3>
+                        <p>Vector Artist</p>
+                    </div>
+                    <div class="member-card">
+                        <div class="avatar"><i class="fas fa-layer-group"></i></div>
+                        <h3>Adnan.P</h3>
+                        <p>Texture Specialist</p>
+                    </div>
+                    <div class="member-card">
+                        <div class="avatar"><i class="fas fa-cube"></i></div>
+                        <h3>Mehdi Ouazzani</h3>
+                        <p>3D Modeler</p>
+                    </div>
+                    <div class="member-card">
+                        <div class="avatar"><i class="fas fa-print"></i></div>
+                        <h3>Yasmine Benali</h3>
+                        <p>Printmaker</p>
+                    </div>
+                    <div class="member-card">
+                        <div class="avatar"><i class="fas fa-project-diagram"></i></div>
+                        <h3>Karim Bennis</h3>
+                        <p>Installation Artist</p>
+                    </div>
+                    <div class="member-card">
+                        <div class="avatar"><i class="fas fa-palette"></i></div>
+                        <h3>Rim Chaoui</h3>
+                        <p>Mixed Media</p>
+                    </div>
+                </div>
 
-/* Optional: container for leaders */
-.leaders-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
-    margin-bottom: 2rem;
-}</style>
+                <!-- subtle back link to main festival -->
+                <div style="margin-top: 2.5rem; text-align: center;">
+                    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Arte Fikrah Festival</a>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer identical to original index -->
+        <footer class="footer">
+            <span>✦</span><span class="divider-dot"></span>
+            © 2026 Arte Fikrah — Cultural Art Festival · Herita Team
+            <span class="divider-dot"></span><span>✦</span>
+            <br>
+            <small>Where heritage meets the avant-garde</small>
+        </footer>
+    </div>
+
+    <!-- INTEGRATED JAVASCRIPT: particles + header scroll + mobile menu (copied & adapted from index) -->
+    <script>
+        (function() {
+            // ---------- PARTICLE BACKGROUND (smooth network) ----------
+            const canvas = document.getElementById('particlesCanvas');
+            if (canvas) {
+                let ctx = canvas.getContext('2d');
+                let particlesArray = [];
+                const particleCount = 80;
+
+                function resizeCanvas() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
+
+                class Particle {
+                    constructor() {
+                        this.reset();
+                    }
+                    reset() {
+                        this.x = Math.random() * canvas.width;
+                        this.y = Math.random() * canvas.height;
+                        this.size = Math.random() * 2.5 + 0.8;
+                        this.speedX = (Math.random() - 0.5) * 0.6;
+                        this.speedY = (Math.random() - 0.5) * 0.6;
+                        this.opacity = Math.random() * 0.5 + 0.15;
+                        this.opacitySpeed = (Math.random() - 0.5) * 0.008;
+                    }
+                    update() {
+                        this.x += this.speedX;
+                        this.y += this.speedY;
+                        this.opacity += this.opacitySpeed;
+                        if (this.opacity > 0.65 || this.opacity < 0.08) this.opacitySpeed *= -1;
+                        if (this.x < -20 || this.x > canvas.width + 20 ||
+                            this.y < -20 || this.y > canvas.height + 20) {
+                            this.reset();
+                        }
+                    }
+                    draw() {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(255,255,245,${this.opacity})`;
+                        ctx.fill();
+                        // subtle glow
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size * 2.2, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(255,169,77,${this.opacity * 0.3})`;
+                        ctx.fill();
+                    }
+                }
+
+                function initParticles() {
+                    particlesArray = [];
+                    for (let i = 0; i < particleCount; i++) {
+                        particlesArray.push(new Particle());
+                    }
+                }
+                initParticles();
+
+                function animateParticles() {
+                    if (!ctx) return;
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    for (let p of particlesArray) {
+                        p.update();
+                        p.draw();
+                    }
+                    // draw connections
+                    for (let i = 0; i < particlesArray.length; i++) {
+                        for (let j = i + 1; j < particlesArray.length; j++) {
+                            const dx = particlesArray[i].x - particlesArray[j].x;
+                            const dy = particlesArray[i].y - particlesArray[j].y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < 130) {
+                                ctx.beginPath();
+                                ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                                ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                                ctx.strokeStyle = `rgba(255,255,255,${0.04 * (1 - dist / 130)})`;
+                                ctx.lineWidth = 0.6;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                    requestAnimationFrame(animateParticles);
+                }
+                animateParticles();
+                window.addEventListener('resize', () => {
+                    resizeCanvas();
+                    initParticles();
+                });
+            }
+
+            // ---------- HEADER SCROLL EFFECT ----------
+            const header = document.getElementById('mainHeader');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 30) header.classList.add('scrolled');
+                    else header.classList.remove('scrolled');
+                });
+            }
+
+            // ---------- MOBILE MENU TOGGLE ----------
+            const mobileBtn = document.getElementById('mobileMenuBtn');
+            const navContainer = document.getElementById('navLinks');
+            if (mobileBtn && navContainer) {
+                mobileBtn.addEventListener('click', () => {
+                    navContainer.classList.toggle('open');
+                    const icon = mobileBtn.querySelector('i');
+                    if (navContainer.classList.contains('open')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+
+            // ---------- INTERSECTION OBSERVER: fade-in for member cards & leaders (same effect as index) ----------
+            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -20px 0px' };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.member-card, .leaders-row .member-card, .team-roster .member-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.55s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.55s cubic-bezier(0.34, 1.2, 0.64, 1)';
+                observer.observe(card);
+            });
+            // also ensure already visible cards get revealed
+            setTimeout(() => {
+                document.querySelectorAll('.member-card').forEach(card => {
+                    if (card.getBoundingClientRect().top < window.innerHeight - 80) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+            }, 200);
+
+            // ------------- subtle floating animation for avatars (optional) -------------
+            console.log('%c✨ Herita Team Page · Designed with Arte Fikrah DNA ✨', 'color: #ffa94d; font-size: 1rem;');
+        })();
+    </script>
+</body>
+</html>
